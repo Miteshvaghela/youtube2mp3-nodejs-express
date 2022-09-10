@@ -20,7 +20,8 @@
             <input type="text" name="videoID" id="videoID">
         </div>
         <div class="form-control">
-            <input type="submit" value="Convert" name="convert">
+            <!-- <input type="submit" value="Convert" class="custom-btn btn-6" name="convert"> -->
+            <button class="custom-btn btn-6"><span>Convert</span></button>
         </div>
     </div>
     </form>
@@ -30,7 +31,7 @@
             <div class="message">
                 <p class="success"> 
                     <span class="title"><%= video_title %></span>
-                    <span class="link"><a href="<%= video_link %>">Download</a></span>
+                    <span class="link"><a href="<%= video_link %>" class=""custom-btn btn-6""><span>Download</span></a></span>
                 </p>
             </div>
         <% }else if(typeof success !== 'undefined' && !success){ %>            
