@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    
+    
+}
+body{
+    text-align: center;
+    margin:auto;
+    width:100%;
+}
+.container{
+    width:100%;
+    margin:100px auto;
+    margin-bottom:50px;
+}
+.form{
+    text-align: center;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form label, input{
+    font-size: 18px;
+    font-weight: bold;
+    padding:8px;
+}
+
+.form input{
+    border:2px solid black;
+    border-radius: 5px;
+    margin-left:10px;
+}
+
+.form input[type="submit"]{
+    background:lightskyblue;
+}
+.form input[type="submit"]:hover{
+    background:darkslateblue;
+    color:#fff;
+}
+.message{
+    background: lightgray;
+    padding: 2px 0px;
+    font-size: 18px;
+    width: 400px;
+    font-weight: bold;    
+    margin: auto;
+    border-radius: 5px;
+    border: 2px solid #b492b2;
+}
+.message .error{    
+    color: red;
+}
+.message .success{    
+    color: green;
+    
+}

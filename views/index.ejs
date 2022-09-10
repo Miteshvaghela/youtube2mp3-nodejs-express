@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>y2mp3</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Youtube to mp3 converter</h1>
+    <div class="container">
+    <form action="/convert-mp3" method="post">
+        <div class="form">
+        <div class="form-control">
+            <label for="videoID">Youtube video id</label>
+            <input type="text" name="videoID" id="videoID">
+        </div>
+        <div class="form-control">
+            <input type="submit" value="Convert" name="convert">
+        </div>
+    </div>
+    </form>
+    </div>
+    
+        <% if(typeof success !== 'undefined' && success){ %>
+            <div class="message">
+                <p class="success"> 
+                    <span class="title"><%= video_title %></span>
+                    <span class="link"><a href="<%= video_link %>">Download</a></span>
+                </p>
+            </div>
+        <% }else if(typeof success !== 'undefined' && !success){ %>            
+            <div class="message">
+                <p class="error">  <span class="title"><%= message %></span> </p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
