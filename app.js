@@ -1,6 +1,7 @@
 // create server with express nodejs 
 
 const express = require('express');
+const axios = require('axios');
 const fetch = require('node-fetch');
 require('dotenv').config();
 const app = express();
@@ -20,42 +21,79 @@ app.post('/convert-mp3', async (req, res) => {
     if(videoID !== undefined && videoID !== null && videoID !== ''){
         // run query 
         const url = "https://youtube-mp36.p.rapidapi.com/dl?id="+videoID;
-        const options = {
-            "method" : "GET",
-            "headers" : {
+
+
+
+
+        // fetching api response with axios api
+
+        const axiosResponse = axios.request({
+            method : "GET",
+            url : url,
+            params : {id : videoID},
+            headers : {
                 'X-RapidAPI-Key': process.env.API_KEY,
                 'X-RapidAPI-Host': process.env.API_HOST
             }
-        }
+        });
 
-        const fetchQuery =  fetch(url, options);
+        axiosResponse.then(response => {
+            //console.log(response);
+            return res.render('index', {
+                video_title : response.data.title,
+                video_link : response.data.link,
+                success : true
+            })
+        }).catch(e => {
+            return res.render('index', {
+                success : false,
+                message : "Could not get the data "+e
+            })
+        });
 
-        fetchQuery
-            .then((data) => data.json())
-            .then(response => {
+
+
+
+
+
+
+
+        // //  Fetching api response with fetch api 
+        // const options = {
+        //     "method" : "GET",
+        //     "headers" : {
+        //         'X-RapidAPI-Key': process.env.API_KEY,
+        //         'X-RapidAPI-Host': process.env.API_HOST
+        //     }
+        // }
+        // const fetchQuery =  fetch(url, options);
+
+        // fetchQuery
+        //     .then((data) => data.json())
+        //     .then(response => {
                 
-                if(response.status === 'fail'){
+        //         if(response.status === 'fail'){
 
-                    return res.render('index', {
-                        message : response.msg,
-                        success : false
-                    })
+        //             return res.render('index', {
+        //                 message : response.msg,
+        //                 success : false
+        //             })
                     
-                }else{
-                    return res.render('index', {
-                        video_title : response.title,
-                        video_link : response.link,
-                        success : true
-                    })
+        //         }else{
+        //             return res.render('index', {
+        //                 video_title : response.title,
+        //                 video_link : response.link,
+        //                 success : true
+        //             })
                     
-                }
+        //         }
 
-            }).catch(e => {
-                return res.render('index', {
-                    message : 'Could not convert the '+videoID+' to mp3.<br/>'+e,
-                    success : false
-                })
-            }) 
+        //     }).catch(e => {
+        //         return res.render('index', {
+        //             message : 'Could not convert the '+videoID+' to mp3.<br/>'+e,
+        //             success : false
+        //         })
+        //     }) 
 
 
     }else{
