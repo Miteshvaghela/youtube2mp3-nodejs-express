@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/convert-mp3', async (req, res) => {
-    const videoID = req.body.videoID;
+    const videoID = req.body.vID;
     if(videoID !== undefined && videoID !== null && videoID !== ''){
         // run query 
         const url = "https://youtube-mp36.p.rapidapi.com/dl?id="+videoID;
@@ -50,12 +50,6 @@ app.post('/convert-mp3', async (req, res) => {
                 message : "Could not get the data "+e
             })
         });
-
-
-
-
-
-
 
 
         // //  Fetching api response with fetch api 
@@ -98,7 +92,7 @@ app.post('/convert-mp3', async (req, res) => {
 
     }else{
         return res.render('index', {
-            message : 'Please enter video ID',
+            message : 'Please enter youtube video ID',
             success : false
         })
     }
@@ -107,5 +101,5 @@ app.post('/convert-mp3', async (req, res) => {
 
 const PORT = process.env.PORT || 3000; 
 app.listen(PORT, () => {
-    console.log(`App running on ${PORT}`);
+    console.log(`Server running on ${PORT}`);
 })
